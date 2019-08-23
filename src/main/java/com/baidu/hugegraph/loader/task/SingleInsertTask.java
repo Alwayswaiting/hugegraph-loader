@@ -60,7 +60,7 @@ public class SingleInsertTask<GE extends GraphElement> extends InsertTask<GE> {
         LoadMetrics metrics = this.context().summary().metrics(this.struct());
         for (GE element : this.batch()) {
             try {
-                addSingle(type, element);
+                this.addSingle(type, element);
                 metrics.increaseLoadSuccess();
             } catch (Exception e) {
                 metrics.increaseLoadFailure();

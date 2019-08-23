@@ -59,8 +59,10 @@ public class BatchInsertTask<GE extends GraphElement> extends InsertTask<GE> {
                 this.addBatch(type, this.batch(), options.checkVertex);
                 break;
             } catch (ClientException e) {
+                LOG.debug("client exception: {}", e.getMessage());
                 retryCount = this.waitThenRetry(retryCount, e);
             } catch (ServerException e) {
+                LOG.debug("server exception: {}", e.getMessage());
                 if (UNACCEPTABLE_EXCEPTIONS.contains(e.exception())) {
                     throw e;
                 }
